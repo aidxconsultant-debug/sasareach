@@ -35,7 +35,10 @@
   // 開封を記録（Googleのログイン情報を送らないので、複数アカウントでログインしている人でも記録できる）
   var c = (new URLSearchParams(location.search).get("c") || "").replace(/[^0-9]/g, "").slice(0, 10);
   if (c) {
-    try { fetch(TRACK + "?c=" + c, { mode: "no-cors", credentials: "omit", keepalive: true }); } catch (e) {}
+    try {
+      fetch(TRACK, { method: "POST", body: JSON.stringify({ action: "open", c: c }), credentials: "omit", keepalive: true })
+        .then(function (r) { return r.json(); }).then(function (d) { console.log("open:", d); }).catch(function () {});
+    } catch (e) {}
   }
 </script>
 </body>

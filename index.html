@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>note運用 実績資料（新谷 優太郎）</title>
+<style>
+  html,body{margin:0;min-height:100%;font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;color:#222;background:#f4f5f7}
+  header{padding:14px 16px;background:#fff;border-bottom:1px solid #e3e5e8;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  h1{font-size:16px;margin:0} p{margin:2px 0 0;font-size:12px;color:#666}
+  a.btn{font-size:13px;padding:8px 14px;background:#1a73e8;color:#fff;border-radius:6px;text-decoration:none;white-space:nowrap}
+  main{padding:16px;text-align:center}
+  main img{max-width:100%;height:auto;border:1px solid #e3e5e8;border-radius:6px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+  .more{margin:14px 0 30px}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>note運用 実績資料（新谷 優太郎）</h1><p>建設業向けnoteの運用実績です。ご覧いただきありがとうございます。</p></div>
+  <a class="btn" id="pdf1" target="_blank" rel="noopener">PDFで開く</a>
+</header>
+<main>
+  <a id="pdf2" target="_blank" rel="noopener"><img id="thumb" alt="note運用 実績資料"></a>
+  <div class="more"><a class="btn" id="pdf3" target="_blank" rel="noopener">PDFで開く</a></div>
+</main>
+<script>
+  // ===== 設定（ここだけ書きかえる） =====
+  var PDF_ID = "1nYf0E68ETd_n1u8PU_3tqX1sYBIlW1y8";   // 実績資料（Googleドライブ）のID
+  var TRACK = "https://script.google.com/macros/s/AKfycbykP0kkEzEQDTrx3H7BA89A4myKDkgmf-5qVeAWlGOGl7takO6sHfnr7_Io4A9Lh9U2/exec";  // 開封を記録するApps Script
+  // =====================================
+  var pdf = "https://drive.google.com/file/d/" + PDF_ID + "/view?usp=sharing";
+  ["pdf1", "pdf2", "pdf3"].forEach(function (id) { document.getElementById(id).href = pdf; });
+  document.getElementById("thumb").src = "https://drive.google.com/thumbnail?id=" + PDF_ID + "&sz=w1600";
+  // 開封を記録（Googleのログイン情報を送らないので、複数アカウントでログインしている人でも記録できる）
+  var c = (new URLSearchParams(location.search).get("c") || "").replace(/[^0-9]/g, "").slice(0, 10);
+  if (c) {
+    try { fetch(TRACK + "?c=" + c, { mode: "no-cors", credentials: "omit", keepalive: true }); } catch (e) {}
+  }
+</script>
+</body>
+</html>
